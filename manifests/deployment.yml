@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "myakscluster-e946"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "myakscluster-e946"
+  template:
+    metadata:
+      labels:
+        app: "myakscluster-e946"
+    spec:
+      containers:
+        - name: "myakscluster-e946"
+          image: "mahen.azurecr.io/myakscluster"
+          ports:
+          - containerPort: 8080
