@@ -12,10 +12,17 @@ const Order = new Schema({
         // 4 for : Confirmed/Closed
     },
     payment:{
-        type : Schema.Types.ObjectId , 
-        ref : 'Payment',
+        type : String, 
         required: true
     },
+    user:{
+        type : String, 
+        required: true
+    },
+    items:[{    
+        type: Schema.Types.ObjectId,
+        required: true  
+    }],
 })
 
 const OrderObj = mongoose.model("Order", Order);
