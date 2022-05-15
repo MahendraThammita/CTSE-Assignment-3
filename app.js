@@ -7,9 +7,9 @@ const router = express.Router({});
 
 //route imports
 // const product = require('./routes/product')
-// const addon = require('./routes/addons')
+const contact = require('./routes/contactRoute')
 const card = require('./routes/cardRoute')
-// const payment = require('./routes/paymentRoutes')
+const payment = require('./routes/paymentRoute')
 // const promotion = require('./routes/promotionRoutes')
 
 const PORT = process.env.PORT || 8080;
@@ -21,9 +21,9 @@ app.use(cors())
 app.use(bodyParser.json())
 
 // app.use('/product',product)
-// app.use('/addon',addon)
+app.use('/contact',contact)
 app.use('/card', card)
-// app.use('/payment', payment)
+app.use('/payment', payment)
 // app.use('/promo', promotion)
 
 
