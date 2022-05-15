@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const Card = require("../modals/Card");
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
 
 //Add Card

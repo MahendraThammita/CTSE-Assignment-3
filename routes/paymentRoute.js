@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const Payment = require("../modals/Payment");
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 var moment = require('moment'); // require
 moment().format(); 
 
