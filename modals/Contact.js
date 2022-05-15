@@ -13,7 +13,7 @@ const contactSchema = new Schema({
     },
     Address_line_2:{
         type: String, 
-        required: true, 
+        required: false, 
     },
     zip_code:{
         type: String, 
@@ -25,11 +25,11 @@ const contactSchema = new Schema({
     },
     state: {
         type: String, 
-        required: true, 
+        required: false, 
     },
     phone: {
         type: String, 
-        required: true, 
+        required: false, 
     },
     user: {
         type : Schema.Types.ObjectId,

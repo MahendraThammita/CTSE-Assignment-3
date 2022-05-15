@@ -12,11 +12,15 @@ const Order = new Schema({
         // 4 for : Confirmed/Closed
     },
     payment:{
-        type : String, 
+        type : Schema.Types.ObjectId, 
         required: true
     },
     user:{
-        type : String, 
+        type : Schema.Types.ObjectId, 
+        required: true
+    },
+    address:{
+        type : Schema.Types.ObjectId, 
         required: true
     },
     items:[{    

@@ -6,11 +6,10 @@ const cors = require('cors')
 const router = express.Router({});
 
 //route imports
-// const product = require('./routes/product')
-// const addon = require('./routes/addons')
+const order = require('./routes/orderRoute')
+const contact = require('./routes/contactRoute')
 const card = require('./routes/cardRoute')
-// const payment = require('./routes/paymentRoutes')
-// const promotion = require('./routes/promotionRoutes')
+const payment = require('./routes/paymentRoute')
 
 const PORT = process.env.PORT || 8080;
 
@@ -20,11 +19,10 @@ require('dotenv/config')
 app.use(cors())
 app.use(bodyParser.json())
 
-// app.use('/product',product)
-// app.use('/addon',addon)
+app.use('/order',order)
+app.use('/contact',contact)
 app.use('/card', card)
-// app.use('/payment', payment)
-// app.use('/promo', promotion)
+app.use('/payment', payment)
 
 
 mongoose.connect(
