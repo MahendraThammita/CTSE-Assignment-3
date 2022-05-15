@@ -2,15 +2,6 @@ const mongoose = require('mongoose');
 const  Schema = mongoose.Schema;
 
 const paymentSchema = new Schema({
-
-    status: {
-        type: Number,
-        required: true
-        // 1 for : Accepted
-        // 2 for : Dispatched
-        // 3 for : Delivering
-        // 4 for : Confirmed/Closed
-    },
     paymentDateTime:{
         type:String,
         required: true
@@ -33,14 +24,8 @@ const paymentSchema = new Schema({
     },
     user:{
         type : Schema.Types.ObjectId , 
-        ref : 'User',
         required: true
     },
-    items:[{
-        type : Schema.Types.ObjectId , 
-        ref : 'Item',
-        required: false
-    }]
 })
 
 const paymentObj = mongoose.model("Payment", paymentSchema);

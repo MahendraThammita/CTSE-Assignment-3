@@ -19,9 +19,8 @@ const cardSchema = new Schema({
         type: String, 
         required: true, 
     },
-    cardHolder: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+    user: {
+        type : Schema.Types.ObjectId,
         required: true, 
     },
     
