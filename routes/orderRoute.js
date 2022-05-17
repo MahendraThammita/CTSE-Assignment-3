@@ -2,32 +2,47 @@ const express = require("express");
 const app = express();
 const Order = require("../modals/Order");
 const router = require("express").Router();
+const axios = require('axios');
+require('dotenv/config')
 
 
 //Create Order
 router.post("/create-order", async (req, res) => {
     
-    let status = req.body.status;
-    let payment = req.body.payment;
-    let address = req.body.address;
-    let items = req.body.items;
-    let user = req.body.user;
+    axios.get(process.env.cartBaseURL + "/get-cart-items/" + req.body.user)
+        .then(async function(cartItems){
+            var items = cartItems.data.map(function(itemObj) {
+                return itemObj._id;
+              });
+            let status = req.body.status;
+            let payment = req.body.payment;
+            let address = req.body.address;
+            let user = req.body.user;
 
-    const order = await new Order({
-        status: status,
-        payment: payment,
-        address: address,
-        items: items,
-        user: user,
-    });
+            const order = await new Order({
+                status: status,
+                payment: payment,
+                address: address,
+                items: items,
+                user: user,
+            });
 
-    try {
-        order.save().then(order => {
-            res.json({ status: 201, message: "order created successfully" , order: order});
-        });   
-    } catch (error) {
-        console.log(error)
-    }
+            try {
+                order.save().then(order => {
+                    axios.get(process.env.cartBaseURL + "/empty/" + req.body.user)
+                    .then(() =>{
+                        res.json({ status: 201, message: "order created successfully" , order: order});
+                    })
+                    .catch(err =>{
+                        res.json({ status: 201, message: "order created successfully : issue in emptying cart" , order: order});
+                    })
+                });   
+            } catch (error) {
+                console.log(error)
+            }
+        }).catch(err => {
+            res.status(500).json({message : 'error'})
+        })
   });
 
   //Get order By Id
