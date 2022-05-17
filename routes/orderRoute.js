@@ -6,6 +6,7 @@ const router = require("express").Router();
 
 //Create Order
 router.post("/create-order", async (req, res) => {
+    
     let status = req.body.status;
     let payment = req.body.payment;
     let address = req.body.address;
